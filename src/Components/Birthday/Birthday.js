@@ -21,10 +21,10 @@ export default function Birthday(props) {
       </div>
       <div className="b-date">{moment(data.birth).format("DD MMMM YYYY")}</div>
       <div className="b-date">{setAge()} ans</div>
-      {data.countDown != 0 && (
+      {data.countDown !== 0 && (
         <div className="b-count-down">{data.countDown} jours restants</div>
       )}
-      {data.countDown == 0 && (
+      {data.countDown === 0 && (
         <div className="b-count-down">🎉 Jour d'anniversaire ! 🎉</div>
       )}
     </div>

@@ -1,5 +1,5 @@
 import "./Avatar.css";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {
   hairList,

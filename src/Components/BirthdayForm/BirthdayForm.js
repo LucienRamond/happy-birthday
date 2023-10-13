@@ -35,7 +35,7 @@ export default function BirthdayForm() {
       const nextYearBirthday = birthday.join(" ");
       const durationMs = new Date(nextYearBirthday) - Date.now();
       return parseInt(moment.duration(durationMs).asDays());
-    } else if (nextBirthday == moment(Date.now()).format("YYYY MM DD")) {
+    } else if (nextBirthday === moment(Date.now()).format("YYYY MM DD")) {
       return 0;
     }
   };
