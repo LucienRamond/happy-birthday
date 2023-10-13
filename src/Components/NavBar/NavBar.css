@@ -1,0 +1,19 @@
+.main-nav {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #444444;
+}
+.main-nav-list {
+  display: flex;
+  gap: 1rem;
+}
+.main-nav-list a {
+  color: white;
+}
+.main-nav-list li {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

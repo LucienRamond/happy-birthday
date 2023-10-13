@@ -1,0 +1,27 @@
+{
+  "hair": [
+    "bangs",
+    "bunHair",
+    "mohawk",
+    "shortHair",
+    "bowlCutHair",
+    "braids",
+    "curlyBob",
+    "curlyShortHair",
+    "froBun",
+    "halfShavedHead",
+    "shavedHead",
+    "straightHair",
+    "wavyBob"
+  ],
+  "mouth": [
+    "openedSmile",
+    "unimpressed",
+    "gapSmile",
+    "openSad",
+    "teethSmile",
+    "awkwardSmile",
+    "braces",
+    "kawaii"
+  ]
+}

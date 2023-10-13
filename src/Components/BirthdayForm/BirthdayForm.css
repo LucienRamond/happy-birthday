@@ -1,0 +1,25 @@
+.b-form {
+  width: 60%;
+  margin-inline: auto;
+  font-size: 1.5rem;
+  position: relative;
+}
+.form-fieldset {
+  display: grid;
+  justify-items: start;
+  text-align: left;
+  gap: 1rem;
+}
+.form-fieldset input {
+  height: 1.5rem;
+}
+.form-fieldset div {
+  display: flex;
+  gap: 1rem;
+}
+.form-fieldset select {
+  font-size: 1.2rem;
+}
+.form-fieldset input[type="radio"] {
+  transform: scale(1.3);
+}
