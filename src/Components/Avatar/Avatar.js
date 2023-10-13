@@ -14,6 +14,10 @@ import {
   eyesIndex,
   eyesUpdateL,
   eyesUpdateR,
+  hairColorIndex,
+  hairColorList,
+  hairColorUpdateL,
+  hairColorUpdateR,
 } from "../../redux/reducer/avatar";
 import { useDispatch } from "react-redux";
 
@@ -24,8 +28,10 @@ export default function Avatar() {
   const mouthesIndex = useSelector(mouthIndex);
   const eyes = useSelector(eyesList);
   const eyeIndex = useSelector(eyesIndex);
+  const hairColor = useSelector(hairColorList);
+  const hairsColorIndex = useSelector(hairColorIndex);
   const dispatch = useDispatch();
-  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${hair[hairsIndex]}&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}`;
+  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${hair[hairsIndex]}&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}&hairColor=${hairColor[hairsColorIndex]}`;
 
   const changeHairR = () => {
     dispatch(hairUpdateR());
@@ -45,13 +51,25 @@ export default function Avatar() {
   const changeEyesL = () => {
     dispatch(eyesUpdateL());
   };
+  const changeHairColorR = () => {
+    dispatch(hairColorUpdateR());
+  };
+  const changeHairColorL = () => {
+    dispatch(hairColorUpdateL);
+  };
 
   return (
     <div className="avatar-container">
       <div className="arrows">
-        <div className="arrow" onClick={changeHairL}>
-          ˂
+        <div className="double-arrows">
+          <div className="arrow" onClick={changeHairColorL}>
+            ˂
+          </div>
+          <div className="arrow" onClick={changeHairL}>
+            ˂
+          </div>
         </div>
+
         <div className="arrow" onClick={changeEyesL}>
           ˂
         </div>
@@ -64,9 +82,15 @@ export default function Avatar() {
         <img src={avatarUrl} alt="" />
       </div>
       <div className="arrows">
-        <div className="arrow" onClick={changeHairR}>
-          ˃
+        <div className="double-arrows">
+          <div className="arrow" onClick={changeHairR}>
+            ˃
+          </div>
+          <div className="arrow" onClick={changeHairColorR}>
+            ˃
+          </div>
         </div>
+
         <div className="arrow" onClick={changeEyesR}>
           ˃
         </div>

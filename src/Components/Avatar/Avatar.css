@@ -34,3 +34,7 @@
   background-color: rgb(241, 241, 241);
   color: rgb(52, 52, 52);
 }
+.double-arrows {
+  display: flex;
+  gap: 0.5rem;
+}
