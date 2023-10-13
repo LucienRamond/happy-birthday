@@ -41,6 +41,18 @@ export const AvatarSlice = createSlice({
       "d56c0c",
       "e9b729",
     ],
+    accessoriesIndex: 0,
+    accessoriesList: [
+      "",
+      "catEars",
+      "glasses",
+      "sailormoonCrown",
+      "clownNose",
+      "sleepMask",
+      "sunglasses",
+      "faceMask",
+      "mustache",
+    ],
     mouthIndex: 0,
     mouthList: [
       "openedSmile",
@@ -83,6 +95,16 @@ export const AvatarSlice = createSlice({
         ? (state.hairColorIndex = 7)
         : state.hairColorIndex--;
     },
+    accessoriesUpdateR: (state) => {
+      state.accessoriesIndex > 7
+        ? (state.accessoriesIndex = 0)
+        : state.accessoriesIndex++;
+    },
+    accessoriesUpdateL: (state) => {
+      state.accessoriesIndex < 1
+        ? (state.accessoriesIndex = 8)
+        : state.accessoriesIndex--;
+    },
   },
 });
 
@@ -95,6 +117,8 @@ export const {
   eyesUpdateR,
   hairColorUpdateL,
   hairColorUpdateR,
+  accessoriesUpdateL,
+  accessoriesUpdateR,
 } = AvatarSlice.actions;
 
 export const hairList = (state) => state.Avatar.hairList;
@@ -105,5 +129,7 @@ export const eyesList = (state) => state.Avatar.eyesList;
 export const eyesIndex = (state) => state.Avatar.eyesIndex;
 export const hairColorList = (state) => state.Avatar.hairColorList;
 export const hairColorIndex = (state) => state.Avatar.hairColorIndex;
+export const accessoriesList = (state) => state.Avatar.accessoriesList;
+export const accessoriesIndex = (state) => state.Avatar.accessoriesIndex;
 
 export default AvatarSlice.reducer;

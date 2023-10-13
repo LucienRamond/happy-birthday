@@ -18,6 +18,10 @@ import {
   hairColorList,
   hairColorUpdateL,
   hairColorUpdateR,
+  accessoriesIndex,
+  accessoriesList,
+  accessoriesUpdateL,
+  accessoriesUpdateR,
 } from "../../redux/reducer/avatar";
 import { useDispatch } from "react-redux";
 
@@ -30,10 +34,19 @@ export default function Avatar() {
   const eyeIndex = useSelector(eyesIndex);
   const hairColor = useSelector(hairColorList);
   const hairsColorIndex = useSelector(hairColorIndex);
+  const accessories = useSelector(accessoriesList);
+  const accessorieIndex = useSelector(accessoriesIndex);
   const dispatch = useDispatch();
-  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${hair[hairsIndex]}&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}&hairColor=${hairColor[hairsColorIndex]}`;
+  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${
+    hair[hairsIndex]
+  }&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}&hairColor=${
+    hairColor[hairsColorIndex]
+  }&accessories=${accessories[accessorieIndex]}&accessoriesProbability=${
+    accessories[accessorieIndex] ? "100" : "0"
+  }`;
 
   const changeHairR = () => {
+    console.log(avatarUrl);
     dispatch(hairUpdateR());
   };
   const changeHairL = () => {
@@ -55,7 +68,13 @@ export default function Avatar() {
     dispatch(hairColorUpdateR());
   };
   const changeHairColorL = () => {
-    dispatch(hairColorUpdateL);
+    dispatch(hairColorUpdateL());
+  };
+  const changeAccessorieR = () => {
+    dispatch(accessoriesUpdateR());
+  };
+  const changeAccessorieL = () => {
+    dispatch(accessoriesUpdateL());
   };
 
   return (
@@ -70,9 +89,15 @@ export default function Avatar() {
           </div>
         </div>
 
-        <div className="arrow" onClick={changeEyesL}>
-          ˂
+        <div className="double-arrows">
+          <div className="arrow" onClick={changeAccessorieL}>
+            ˂
+          </div>
+          <div className="arrow" onClick={changeEyesL}>
+            ˂
+          </div>
         </div>
+
         <div className="arrow" onClick={changeMouthL}>
           ˂
         </div>
@@ -91,9 +116,15 @@ export default function Avatar() {
           </div>
         </div>
 
-        <div className="arrow" onClick={changeEyesR}>
-          ˃
+        <div className="double-arrows">
+          <div className="arrow" onClick={changeEyesR}>
+            ˃
+          </div>
+          <div className="arrow" onClick={changeAccessorieR}>
+            ˃
+          </div>
         </div>
+
         <div className="arrow" onClick={changeMouthR}>
           ˃
         </div>
