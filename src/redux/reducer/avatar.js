@@ -3,6 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AvatarSlice = createSlice({
   name: "Avatar",
   initialState: {
+    skinColorIndex: 0,
+    skinColorList: [
+      "ffe4c0",
+      "f5d7b1",
+      "efcc9f",
+      "e2ba87",
+      "c99c62",
+      "a47539",
+      "8c5a2b",
+      "643d19",
+    ],
     eyesIndex: 0,
     eyesList: [
       "cheery",
@@ -105,6 +116,16 @@ export const AvatarSlice = createSlice({
         ? (state.accessoriesIndex = 8)
         : state.accessoriesIndex--;
     },
+    skinColorUpdateR: (state) => {
+      state.skinColorIndex > 6
+        ? (state.skinColorIndex = 0)
+        : state.skinColorIndex++;
+    },
+    skinColorUpdateL: (state) => {
+      state.skinColorIndex < 1
+        ? (state.skinColorIndex = 7)
+        : state.skinColorIndex--;
+    },
   },
 });
 
@@ -119,6 +140,8 @@ export const {
   hairColorUpdateR,
   accessoriesUpdateL,
   accessoriesUpdateR,
+  skinColorUpdateL,
+  skinColorUpdateR,
 } = AvatarSlice.actions;
 
 export const hairList = (state) => state.Avatar.hairList;
@@ -131,5 +154,7 @@ export const hairColorList = (state) => state.Avatar.hairColorList;
 export const hairColorIndex = (state) => state.Avatar.hairColorIndex;
 export const accessoriesList = (state) => state.Avatar.accessoriesList;
 export const accessoriesIndex = (state) => state.Avatar.accessoriesIndex;
+export const skinColorList = (state) => state.Avatar.skinColorList;
+export const skinColorIndex = (state) => state.Avatar.skinColorIndex;
 
 export default AvatarSlice.reducer;
