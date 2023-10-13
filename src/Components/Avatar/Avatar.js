@@ -10,6 +10,10 @@ import {
   hairIndex,
   mouthList,
   mouthIndex,
+  eyesList,
+  eyesIndex,
+  eyesUpdateL,
+  eyesUpdateR,
 } from "../../redux/reducer/avatar";
 import { useDispatch } from "react-redux";
 
@@ -18,8 +22,10 @@ export default function Avatar() {
   const hairsIndex = useSelector(hairIndex);
   const mouth = useSelector(mouthList);
   const mouthesIndex = useSelector(mouthIndex);
+  const eyes = useSelector(eyesList);
+  const eyeIndex = useSelector(eyesIndex);
   const dispatch = useDispatch();
-  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${hair[hairsIndex]}&mouth=${mouth[mouthesIndex]}`;
+  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${hair[hairsIndex]}&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}`;
 
   const changeHairR = () => {
     dispatch(hairUpdateR());
@@ -33,11 +39,20 @@ export default function Avatar() {
   const changeMouthL = () => {
     dispatch(mouthUpdateL());
   };
+  const changeEyesR = () => {
+    dispatch(eyesUpdateR());
+  };
+  const changeEyesL = () => {
+    dispatch(eyesUpdateL());
+  };
 
   return (
     <div className="avatar-container">
       <div className="arrows">
         <div className="arrow" onClick={changeHairL}>
+          ˂
+        </div>
+        <div className="arrow" onClick={changeEyesL}>
           ˂
         </div>
         <div className="arrow" onClick={changeMouthL}>
@@ -50,6 +65,9 @@ export default function Avatar() {
       </div>
       <div className="arrows">
         <div className="arrow" onClick={changeHairR}>
+          ˃
+        </div>
+        <div className="arrow" onClick={changeEyesR}>
           ˃
         </div>
         <div className="arrow" onClick={changeMouthR}>

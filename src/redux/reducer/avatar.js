@@ -3,6 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AvatarSlice = createSlice({
   name: "Avatar",
   initialState: {
+    eyesIndex: 0,
+    eyesList: [
+      "cheery",
+      "normal",
+      "confused",
+      "starstruck",
+      "winking",
+      "sleepy",
+      "sad",
+      "angry",
+    ],
+    hairIndex: 0,
     hairList: [
       "bangs",
       "bunHair",
@@ -18,7 +30,8 @@ export const AvatarSlice = createSlice({
       "straightHair",
       "wavyBob",
     ],
-    hairIndex: 0,
+
+    mouthIndex: 0,
     mouthList: [
       "openedSmile",
       "unimpressed",
@@ -29,7 +42,6 @@ export const AvatarSlice = createSlice({
       "braces",
       "kawaii",
     ],
-    mouthIndex: 0,
   },
 
   reducers: {
@@ -45,15 +57,29 @@ export const AvatarSlice = createSlice({
     mouthUpdateL: (state) => {
       state.mouthIndex < 1 ? (state.mouthIndex = 7) : state.mouthIndex--;
     },
+    eyesUpdateR: (state) => {
+      state.eyesIndex > 6 ? (state.eyesIndex = 0) : state.eyesIndex++;
+    },
+    eyesUpdateL: (state) => {
+      state.eyesIndex < 1 ? (state.eyesIndex = 7) : state.eyesIndex--;
+    },
   },
 });
 
-export const { hairUpdateR, hairUpdateL, mouthUpdateL, mouthUpdateR } =
-  AvatarSlice.actions;
+export const {
+  hairUpdateR,
+  hairUpdateL,
+  mouthUpdateL,
+  mouthUpdateR,
+  eyesUpdateL,
+  eyesUpdateR,
+} = AvatarSlice.actions;
 
 export const hairList = (state) => state.Avatar.hairList;
 export const hairIndex = (state) => state.Avatar.hairIndex;
 export const mouthList = (state) => state.Avatar.mouthList;
 export const mouthIndex = (state) => state.Avatar.mouthIndex;
+export const eyesList = (state) => state.Avatar.eyesList;
+export const eyesIndex = (state) => state.Avatar.eyesIndex;
 
 export default AvatarSlice.reducer;
