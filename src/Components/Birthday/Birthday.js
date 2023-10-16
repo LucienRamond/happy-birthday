@@ -7,8 +7,6 @@ export default function Birthday(props) {
 
   const setAge = () => {
     const age = parseInt(moment(data.birth).fromNow().split(" ")[3]) - 1;
-    const actualYear = new Date();
-    console.log(actualYear.getFullYear() - data.birth.split("-")[0]);
     return age;
   };
 

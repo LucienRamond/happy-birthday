@@ -1,5 +1,5 @@
 import "./Avatar.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {
   hairList,
@@ -44,6 +44,12 @@ export default function Avatar() {
   const skinColor = useSelector(skinColorList);
   const skinsColorIndex = useSelector(skinColorIndex);
   const dispatch = useDispatch();
+
+  const [toggleUrl, setToggleUrl] = useState(false);
+  const urlToggle = () => {
+    setToggleUrl(!toggleUrl);
+  };
+
   const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${
     hair[hairsIndex]
   }&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}&hairColor=${
@@ -55,43 +61,54 @@ export default function Avatar() {
 
   useEffect(() => {
     dispatch(avatarUrlUpdate(avatarUrl));
-  }, [avatarUrl]);
+  }, [toggleUrl]);
 
   const changeHairR = () => {
     dispatch(hairUpdateR());
+    urlToggle();
   };
   const changeHairL = () => {
     dispatch(hairUpdateL());
+    urlToggle();
   };
   const changeMouthR = () => {
     dispatch(mouthUpdateR());
   };
   const changeMouthL = () => {
     dispatch(mouthUpdateL());
+    urlToggle();
   };
   const changeEyesR = () => {
     dispatch(eyesUpdateR());
+    urlToggle();
   };
   const changeEyesL = () => {
     dispatch(eyesUpdateL());
+    urlToggle();
   };
   const changeHairColorR = () => {
     dispatch(hairColorUpdateR());
+    urlToggle();
   };
   const changeHairColorL = () => {
     dispatch(hairColorUpdateL());
+    urlToggle();
   };
   const changeAccessorieR = () => {
     dispatch(accessoriesUpdateR());
+    urlToggle();
   };
   const changeAccessorieL = () => {
     dispatch(accessoriesUpdateL());
+    urlToggle();
   };
   const changeSkinColorR = () => {
     dispatch(skinColorUpdateR());
+    urlToggle();
   };
   const changeSkinColorL = () => {
     dispatch(skinColorUpdateL());
+    urlToggle();
   };
 
   return (
