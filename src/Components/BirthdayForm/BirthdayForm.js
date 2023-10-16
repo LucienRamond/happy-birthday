@@ -22,7 +22,6 @@ export default function BirthdayForm() {
 
   const handleForm = (e) => {
     e.preventDefault();
-    console.log(data);
     dispatch(birthdayUpdate(data));
     dispatch(keyUpdate());
   };
@@ -31,7 +30,6 @@ export default function BirthdayForm() {
     const birthday = birthdays.split("-");
     birthday[0] = "2023";
     const nextBirthday = birthday.join(" ");
-    console.log(nextBirthday);
     if (nextBirthday > moment(Date.now()).format("YYYY MM DD")) {
       const durationMs = new Date(nextBirthday) - Date.now();
       return dispatch(

@@ -1,5 +1,5 @@
 import "./Avatar.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {
   hairList,
@@ -28,6 +28,7 @@ import {
   skinColorUpdateR,
 } from "../../redux/reducer/avatar";
 import { useDispatch } from "react-redux";
+import { avatarUrlUpdate } from "../../redux/reducer/NewBirthday";
 
 export default function Avatar() {
   const hair = useSelector(hairList);
@@ -52,8 +53,11 @@ export default function Avatar() {
   }&skinColor=${skinColor[skinsColorIndex]}
   `;
 
+  useEffect(() => {
+    dispatch(avatarUrlUpdate(avatarUrl));
+  }, [avatarUrl]);
+
   const changeHairR = () => {
-    console.log(avatarUrl);
     dispatch(hairUpdateR());
   };
   const changeHairL = () => {
