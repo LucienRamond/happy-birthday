@@ -9,20 +9,47 @@ export const NewBirthdaySlice = createSlice({
       birth: "",
       sex: "",
       key: 0,
-      countDown: 0,
+      countDown: "",
       avatarUrl: "",
     },
   },
 
   reducers: {
-    birthdayUpdate: (state, action) => {
-      //   state.new_birthday = {...state.new_birthday, action.payload.key : action.payload.value} ;
+    nameUpdate: (state, action) => {
+      state.new_birthday.name = action.payload;
+    },
+    relationshipUpdate: (state, action) => {
+      state.new_birthday.relationship = action.payload;
+    },
+    birthUpdate: (state, action) => {
+      state.new_birthday.birth = action.payload;
+    },
+    sexUpdate: (state, action) => {
+      state.new_birthday.sex = action.payload;
+    },
+    keyUpdate: (state) => {
+      state.new_birthday.key += 1;
+    },
+    countDownUpdate: (state, action) => {
+      state.new_birthday.countDown = action.payload;
+    },
+    avatarUrlUpdate: (state, action) => {
+      state.new_birthday.avatarUrl = action.payload;
     },
   },
 });
 
-export const { birthdayUpdate } = NewBirthdaySlice.actions;
+export const {
+  nameUpdate,
+  relationshipUpdate,
+  birthUpdate,
+  sexUpdate,
+  countDownUpdate,
+  avatarUrlUpdate,
+  keyUpdate,
+} = NewBirthdaySlice.actions;
 
 export const new_birthday = (state) => state.NewBirthday.new_birthday;
+export const birth = (state) => state.NewBirthday.new_birthday.birth;
 
 export default NewBirthdaySlice.reducer;

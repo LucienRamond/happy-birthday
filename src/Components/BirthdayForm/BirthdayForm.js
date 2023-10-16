@@ -1,42 +1,51 @@
 import "./BirthdayForm.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { birthdayUpdate } from "../../redux/reducer/Birthdays";
+import {
+  new_birthday,
+  nameUpdate,
+  relationshipUpdate,
+  birthUpdate,
+  sexUpdate,
+  countDownUpdate,
+  keyUpdate,
+  birth,
+} from "../../redux/reducer/NewBirthday";
 import moment from "moment";
 import "moment/locale/fr";
 import Avatar from "../Avatar/Avatar";
 
 export default function BirthdayForm() {
   const dispatch = useDispatch();
-  const [data, setData] = useState({
-    name: "",
-    relationship: "",
-    birth: "",
-    sex: "",
-    key: 1,
-    countDown: 0,
-  });
+  const birthdays = useSelector(birth);
+  const data = useSelector(new_birthday);
 
   const handleForm = (e) => {
     e.preventDefault();
+    console.log(data);
     dispatch(birthdayUpdate(data));
-    setData({ ...data, key: data.key + 1 });
+    dispatch(keyUpdate());
   };
 
   const countDown = () => {
-    const birthday = data.birth.split("-");
+    const birthday = birthdays.split("-");
     birthday[0] = "2023";
     const nextBirthday = birthday.join(" ");
+    console.log(nextBirthday);
     if (nextBirthday > moment(Date.now()).format("YYYY MM DD")) {
       const durationMs = new Date(nextBirthday) - Date.now();
-      return parseInt(moment.duration(durationMs).asDays());
+      return dispatch(
+        countDownUpdate(parseInt(moment.duration(durationMs).asDays() + 1))
+      );
     } else if (nextBirthday < moment(Date.now()).format("YYYY MM DD")) {
       birthday[0] = "2024";
       const nextYearBirthday = birthday.join(" ");
       const durationMs = new Date(nextYearBirthday) - Date.now();
-      return parseInt(moment.duration(durationMs).asDays());
+      return dispatch(
+        countDownUpdate(parseInt(moment.duration(durationMs).asDays() + 1))
+      );
     } else if (nextBirthday === moment(Date.now()).format("YYYY MM DD")) {
-      return 0;
+      return dispatch(countDownUpdate(0));
     }
   };
 
@@ -52,14 +61,14 @@ export default function BirthdayForm() {
               type="text"
               id="name"
               name="name"
-              onChange={(e) => setData({ ...data, name: e.target.value })}
+              onChange={(e) => dispatch(nameUpdate(e.target.value))}
             />
           </div>
           <select
             required
             id="relationship"
             name="relationship"
-            onChange={(e) => setData({ ...data, relationship: e.target.value })}
+            onChange={(e) => dispatch(relationshipUpdate(e.target.value))}
           >
             <option value="">Relation</option>
             <option value="moi">Moi</option>
@@ -83,11 +92,8 @@ export default function BirthdayForm() {
               type="date"
               id="birthday"
               onChange={(e) => {
-                setData({
-                  ...data,
-                  birth: e.target.value,
-                  countDown: countDown(),
-                });
+                dispatch(birthUpdate(e.target.value));
+                countDown();
               }}
             />
           </div>
@@ -98,7 +104,7 @@ export default function BirthdayForm() {
               name="sex"
               id="male"
               value="M"
-              onChange={(e) => setData({ ...data, sex: e.target.value })}
+              onChange={(e) => dispatch(sexUpdate(e.target.value))}
             />
             <label htmlFor="male">Garçon</label>
             <input
@@ -107,7 +113,7 @@ export default function BirthdayForm() {
               name="sex"
               id="female"
               value="F"
-              onChange={(e) => setData({ ...data, sex: e.target.value })}
+              onChange={(e) => dispatch(sexUpdate(e.target.value))}
             />
             <label htmlFor="female">Fille</label>
           </div>
