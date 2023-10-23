@@ -8,7 +8,6 @@ export const NewBirthdaySlice = createSlice({
       relationship: "",
       birth: "",
       sex: "",
-      key: 0,
       countDown: "",
       avatarUrl: "",
     },
@@ -26,9 +25,6 @@ export const NewBirthdaySlice = createSlice({
     },
     sexUpdate: (state, action) => {
       state.new_birthday.sex = action.payload;
-    },
-    keyUpdate: (state) => {
-      state.new_birthday.key += 1;
     },
     countDownUpdate: (state, action) => {
       state.new_birthday.countDown = action.payload;

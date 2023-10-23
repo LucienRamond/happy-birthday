@@ -11,8 +11,8 @@ export default function Home() {
 
   return (
     <>
-      {sortedBirthdays.map((item) => {
-        return <Birthday object={item} key={item.key} />;
+      {sortedBirthdays.map((item, i) => {
+        return <Birthday object={item} key={`birthday-${i}`} />;
       })}
     </>
   );

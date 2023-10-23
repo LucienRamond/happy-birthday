@@ -1,6 +1,6 @@
 import "./BirthdayForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { birthdayUpdate } from "../../redux/reducer/Birthdays";
+import { addNewBirthday } from "../../redux/reducer/Birthdays";
 import {
   new_birthday,
   nameUpdate,
@@ -8,7 +8,6 @@ import {
   birthUpdate,
   sexUpdate,
   countDownUpdate,
-  keyUpdate,
   birth,
 } from "../../redux/reducer/NewBirthday";
 import moment from "moment";
@@ -20,10 +19,9 @@ export default function BirthdayForm() {
   const birthdays = useSelector(birth);
   const data = useSelector(new_birthday);
 
-  const handleForm = (e) => {
+  const onClickAddNewBirthday = (e) => {
     e.preventDefault();
-    dispatch(birthdayUpdate(data));
-    dispatch(keyUpdate());
+    dispatch(addNewBirthday(data));
   };
 
   const countDown = () => {
@@ -49,7 +47,7 @@ export default function BirthdayForm() {
 
   return (
     <>
-      <form onSubmit={handleForm} className="b-form">
+      <form className="b-form">
         <fieldset className="form-fieldset">
           <legend>Ajouter un anniversaire</legend>
           <div className="name">
@@ -115,7 +113,7 @@ export default function BirthdayForm() {
             />
             <label htmlFor="female">Fille</label>
           </div>
-          <button type="submit">Ajouter</button>
+          <button onClick={onClickAddNewBirthday}>Ajouter</button>
         </fieldset>
         <Avatar />
       </form>
