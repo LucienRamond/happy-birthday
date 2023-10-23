@@ -1,142 +1,163 @@
 import "./Avatar.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import {
-  hairList,
-  hairUpdateR,
-  hairUpdateL,
-  mouthUpdateL,
-  mouthUpdateR,
-  hairIndex,
-  mouthList,
-  mouthIndex,
-  eyesList,
-  eyesIndex,
-  eyesUpdateL,
-  eyesUpdateR,
-  hairColorIndex,
-  hairColorList,
-  hairColorUpdateL,
-  hairColorUpdateR,
-  accessoriesIndex,
-  accessoriesList,
-  accessoriesUpdateL,
-  accessoriesUpdateR,
-  skinColorIndex,
-  skinColorList,
-  skinColorUpdateL,
-  skinColorUpdateR,
-} from "../../redux/reducer/avatar";
 import { useDispatch } from "react-redux";
 import { avatarUrlUpdate } from "../../redux/reducer/NewBirthday";
 
+const skinColorList = [
+  "ffe4c0",
+  "f5d7b1",
+  "efcc9f",
+  "e2ba87",
+  "c99c62",
+  "a47539",
+  "8c5a2b",
+  "643d19",
+];
+const eyesList = [
+  "cheery",
+  "normal",
+  "confused",
+  "starstruck",
+  "winking",
+  "sleepy",
+  "sad",
+  "angry",
+];
+const hairList = [
+  "bangs",
+  "bunHair",
+  "mohawk",
+  "shortHair",
+  "bowlCutHair",
+  "braids",
+  "curlyBob",
+  "curlyShortHair",
+  "froBun",
+  "halfShavedHead",
+  "shavedHead",
+  "straightHair",
+  "wavyBob",
+];
+const hairColorList = [
+  "220f00",
+  "3a1a00",
+  "71472d",
+  "e2ba87",
+  "605de4",
+  "238d80",
+  "d56c0c",
+  "e9b729",
+];
+const accessoriesList = [
+  "",
+  "catEars",
+  "glasses",
+  "sailormoonCrown",
+  "clownNose",
+  "sleepMask",
+  "sunglasses",
+  "faceMask",
+  "mustache",
+];
+const mouthList = [
+  "openedSmile",
+  "unimpressed",
+  "gapSmile",
+  "openSad",
+  "teethSmile",
+  "awkwardSmile",
+  "braces",
+  "kawaii",
+];
+
 export default function Avatar() {
-  const hair = useSelector(hairList);
-  const hairsIndex = useSelector(hairIndex);
-  const mouth = useSelector(mouthList);
-  const mouthesIndex = useSelector(mouthIndex);
-  const eyes = useSelector(eyesList);
-  const eyeIndex = useSelector(eyesIndex);
-  const hairColor = useSelector(hairColorList);
-  const hairsColorIndex = useSelector(hairColorIndex);
-  const accessories = useSelector(accessoriesList);
-  const accessorieIndex = useSelector(accessoriesIndex);
-  const skinColor = useSelector(skinColorList);
-  const skinsColorIndex = useSelector(skinColorIndex);
-  const dispatch = useDispatch();
-
-  const [toggleUrl, setToggleUrl] = useState(false);
-  const urlToggle = () => {
-    setToggleUrl(!toggleUrl);
-  };
-
-  const avatarUrl = `https://api.dicebear.com/7.x/big-smile/svg?hair=${
-    hair[hairsIndex]
-  }&mouth=${mouth[mouthesIndex]}&eyes=${eyes[eyeIndex]}&hairColor=${
-    hairColor[hairsColorIndex]
-  }&accessories=${accessories[accessorieIndex]}&accessoriesProbability=${
-    accessories[accessorieIndex] ? "100" : "0"
-  }&skinColor=${skinColor[skinsColorIndex]}
-  `;
+  const [hairsIndex, setHairsIndex] = useState(0);
+  const [mouthesIndex, setMouthesIndex] = useState(0);
+  const [eyeIndex, setEyeIndex] = useState(0);
+  const [hairsColorIndex, setHairsColorIndex] = useState(3);
+  const [accessorieIndex, setAccessorieIndex] = useState(0);
+  const [skinsColorIndex, setSkinsColorIndex] = useState(0);
+  const [avatarUrl, setAvatarUrl] =
+    useState(`https://api.dicebear.com/7.x/big-smile/svg?hair=${
+      hairList[hairsIndex]
+    }&mouth=${mouthList[mouthesIndex]}&eyes=${eyesList[eyeIndex]}&hairColor=${
+      hairColorList[hairsColorIndex]
+    }&accessories=${accessoriesList[accessorieIndex]}&accessoriesProbability=${
+      accessoriesList[accessorieIndex] ? "100" : "0"
+    }&skinColor=${skinColorList[skinsColorIndex]}
+  `);
 
   useEffect(() => {
-    dispatch(avatarUrlUpdate(avatarUrl));
-  }, [toggleUrl]);
-
-  const changeHairR = () => {
-    dispatch(hairUpdateR());
-    urlToggle();
-  };
-  const changeHairL = () => {
-    dispatch(hairUpdateL());
-    urlToggle();
-  };
-  const changeMouthR = () => {
-    dispatch(mouthUpdateR());
-  };
-  const changeMouthL = () => {
-    dispatch(mouthUpdateL());
-    urlToggle();
-  };
-  const changeEyesR = () => {
-    dispatch(eyesUpdateR());
-    urlToggle();
-  };
-  const changeEyesL = () => {
-    dispatch(eyesUpdateL());
-    urlToggle();
-  };
-  const changeHairColorR = () => {
-    dispatch(hairColorUpdateR());
-    urlToggle();
-  };
-  const changeHairColorL = () => {
-    dispatch(hairColorUpdateL());
-    urlToggle();
-  };
-  const changeAccessorieR = () => {
-    dispatch(accessoriesUpdateR());
-    urlToggle();
-  };
-  const changeAccessorieL = () => {
-    dispatch(accessoriesUpdateL());
-    urlToggle();
-  };
-  const changeSkinColorR = () => {
-    dispatch(skinColorUpdateR());
-    urlToggle();
-  };
-  const changeSkinColorL = () => {
-    dispatch(skinColorUpdateL());
-    urlToggle();
-  };
+    setAvatarUrl(`https://api.dicebear.com/7.x/big-smile/svg?hair=${
+      hairList[hairsIndex]
+    }&mouth=${mouthList[mouthesIndex]}&eyes=${eyesList[eyeIndex]}&hairColor=${
+      hairColorList[hairsColorIndex]
+    }&accessories=${accessoriesList[accessorieIndex]}&accessoriesProbability=${
+      accessoriesList[accessorieIndex] ? "100" : "0"
+    }&skinColor=${skinColorList[skinsColorIndex]}
+  `);
+  }, [
+    hairsIndex,
+    mouthesIndex,
+    eyeIndex,
+    hairsColorIndex,
+    accessorieIndex,
+    skinsColorIndex,
+  ]);
 
   return (
     <div className="avatar-container">
       <div className="arrows">
         <div className="double-arrows">
-          <div className="arrow" onClick={changeHairColorL}>
+          <div
+            className="arrow"
+            onClick={() =>
+              hairsColorIndex > 0 && setHairsColorIndex(hairsColorIndex - 1)
+            }
+          >
             ˂
           </div>
-          <div className="arrow" onClick={changeHairL}>
+          <div
+            className="arrow"
+            onClick={() => hairsIndex > 0 && setHairsIndex(hairsIndex - 1)}
+          >
             ˂
           </div>
         </div>
 
         <div className="double-arrows">
-          <div className="arrow" onClick={changeAccessorieL}>
+          <div
+            className="arrow"
+            onClick={() =>
+              accessorieIndex > 0 && setAccessorieIndex(accessorieIndex - 1)
+            }
+          >
             ˂
           </div>
-          <div className="arrow" onClick={changeEyesL}>
+          <div
+            className="arrow"
+            onClick={() => eyeIndex > 0 && setEyeIndex(eyeIndex - 1)}
+          >
             ˂
           </div>
         </div>
 
         <div className="double-arrows">
-          <div className="arrow" onClick={changeSkinColorL}>
+          <div
+            className="arrow"
+            onClick={() =>
+              skinsColorIndex > 0 && setSkinsColorIndex(skinsColorIndex - 1)
+            }
+          >
             ˂
           </div>
-          <div className="arrow" onClick={changeMouthL}>
+          <div
+            className="arrow"
+            onClick={() =>
+              mouthesIndex > 0 && setMouthesIndex(mouthesIndex - 1)
+            }
+          >
             ˂
           </div>
         </div>
@@ -147,30 +168,64 @@ export default function Avatar() {
       </div>
       <div className="arrows">
         <div className="double-arrows">
-          <div className="arrow" onClick={changeHairR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              hairsIndex < hairList.length - 1 && setHairsIndex(hairsIndex + 1)
+            }
+          >
             ˃
           </div>
-          <div className="arrow" onClick={changeHairColorR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              hairsColorIndex < hairColorList.length - 1 &&
+              setHairsColorIndex(hairsColorIndex + 1)
+            }
+          >
             ˃
           </div>
         </div>
 
         <div className="double-arrows">
-          <div className="arrow" onClick={changeEyesR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              eyeIndex < eyesList.length - 1 && setEyeIndex(eyeIndex + 1)
+            }
+          >
             ˃
           </div>
-          <div className="arrow" onClick={changeAccessorieR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              accessorieIndex < accessoriesList.length - 1 &&
+              setAccessorieIndex(accessorieIndex + 1)
+            }
+          >
             ˃
           </div>
         </div>
 
         <div className="double-arrows">
-          <div className="arrow" onClick={changeMouthR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              mouthesIndex < mouthList.length - 1 &&
+              setMouthesIndex(mouthesIndex + 1)
+            }
+          >
             ˃
           </div>
-          <div className="arrow" onClick={changeSkinColorR}>
+          <div
+            className="arrow"
+            onClick={() =>
+              skinsColorIndex < skinColorList.length - 1 &&
+              setSkinsColorIndex(skinsColorIndex + 1)
+            }
+          >
             ˃
-          </div>
+          </div>{" "}
         </div>
       </div>
     </div>
