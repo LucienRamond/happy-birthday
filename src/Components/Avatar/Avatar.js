@@ -88,8 +88,8 @@ export default function Avatar() {
     }&skinColor=${skinColorList[skinsColorIndex]}
   `);
 
-  const updateAvatar = () => {
-    dispatch(avatarUrlUpdate(avatarUrl));
+  const updateAvatar = (url) => {
+    dispatch(avatarUrlUpdate(url));
   };
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function Avatar() {
       accessoriesList[accessorieIndex] ? "100" : "0"
     }&skinColor=${skinColorList[skinsColorIndex]}
   `);
-    updateAvatar();
+    updateAvatar(avatarUrl);
   }, [
     hairsIndex,
     mouthesIndex,
@@ -109,6 +109,7 @@ export default function Avatar() {
     hairsColorIndex,
     accessorieIndex,
     skinsColorIndex,
+    updateAvatar,
   ]);
 
   return (
