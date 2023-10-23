@@ -6,8 +6,20 @@ export default function Birthday(props) {
   const data = props.object;
 
   const setAge = () => {
-    const age = parseInt(moment(data.birth).fromNow().split(" ")[3]) - 1;
-    return age;
+    const actualDate = moment(Date.now()).format("MM DD");
+    const birthdayDate = moment(data.birth).format("MM DD");
+    if (actualDate < birthdayDate) {
+      return (
+        parseInt(moment(Date.now()).format("YYYY")) -
+        parseInt(moment(data.birth).format("YYYY")) -
+        1
+      );
+    } else {
+      return (
+        parseInt(moment(Date.now()).format("YYYY")) -
+        parseInt(moment(data.birth).format("YYYY"))
+      );
+    }
   };
 
   return (

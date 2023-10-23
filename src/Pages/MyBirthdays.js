@@ -15,14 +15,8 @@ export default function MyBirthdays() {
         <li>Date de naissance</li>
         <li>Sexe</li>
       </ul>
-      {birthdays.map((item) => {
-        return (
-          <BirthdaysLine
-            object={item}
-            key={item.key}
-            index={birthdays.indexOf(item)}
-          />
-        );
+      {birthdays.map((item, i) => {
+        return <BirthdaysLine object={item} key={`birthday-${i}`} index={i} />;
       })}
     </>
   );
