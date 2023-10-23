@@ -90,7 +90,7 @@ export default function Avatar() {
 
   useEffect(() => {
     dispatch(avatarUrlUpdate(avatarUrl));
-  }, [avatarUrl]);
+  }, [avatarUrl, dispatch]);
 
   useEffect(() => {
     setAvatarUrl(`https://api.dicebear.com/7.x/big-smile/svg?hair=${
