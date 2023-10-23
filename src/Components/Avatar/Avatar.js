@@ -88,6 +88,10 @@ export default function Avatar() {
     }&skinColor=${skinColorList[skinsColorIndex]}
   `);
 
+  const updateAvatar = () => {
+    dispatch(avatarUrlUpdate(avatarUrl));
+  };
+
   useEffect(() => {
     setAvatarUrl(`https://api.dicebear.com/7.x/big-smile/svg?hair=${
       hairList[hairsIndex]
@@ -97,7 +101,7 @@ export default function Avatar() {
       accessoriesList[accessorieIndex] ? "100" : "0"
     }&skinColor=${skinColorList[skinsColorIndex]}
   `);
-    dispatch(avatarUrlUpdate(avatarUrl));
+    updateAvatar();
   }, [
     hairsIndex,
     mouthesIndex,
