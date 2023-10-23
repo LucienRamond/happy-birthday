@@ -1,5 +1,7 @@
 import "./Avatar.css";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { avatarUrlUpdate } from "../../redux/reducer/NewBirthday";
 
 const skinColorList = [
   "ffe4c0",
@@ -69,6 +71,7 @@ const mouthList = [
 ];
 
 export default function Avatar() {
+  const dispatch = useDispatch();
   const [hairsIndex, setHairsIndex] = useState(0);
   const [mouthesIndex, setMouthesIndex] = useState(0);
   const [eyeIndex, setEyeIndex] = useState(0);
@@ -94,6 +97,7 @@ export default function Avatar() {
       accessoriesList[accessorieIndex] ? "100" : "0"
     }&skinColor=${skinColorList[skinsColorIndex]}
   `);
+    dispatch(avatarUrlUpdate(avatarUrl));
   }, [
     hairsIndex,
     mouthesIndex,
