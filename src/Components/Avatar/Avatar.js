@@ -1,8 +1,5 @@
 import "./Avatar.css";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useDispatch } from "react-redux";
-import { avatarUrlUpdate } from "../../redux/reducer/NewBirthday";
 
 const skinColorList = [
   "ffe4c0",
