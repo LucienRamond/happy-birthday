@@ -19,9 +19,16 @@ export default function BirthdayForm() {
   const birthdays = useSelector(birth);
   const data = useSelector(new_birthday);
 
-  const onClickAddNewBirthday = (e) => {
-    e.preventDefault();
+  const onClickAddNewBirthday = () => {
     dispatch(addNewBirthday(data));
+    fetch("https://api.passion-musique.net/birthday_insert.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+      mode: "no-cors",
+    });
   };
 
   const countDown = () => {
@@ -87,6 +94,7 @@ export default function BirthdayForm() {
               required
               type="date"
               id="birthday"
+              name="date"
               onChange={(e) => {
                 dispatch(birthUpdate(e.target.value));
                 countDown();

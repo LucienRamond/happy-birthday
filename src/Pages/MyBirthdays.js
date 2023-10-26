@@ -1,10 +1,19 @@
 import BirthdaysLine from "../Components/BirthdaysLine/BirthdaysLine";
-import { useSelector } from "react-redux";
-import { my_birthdays } from "../redux/reducer/Birthdays";
 import BirthdayForm from "../Components/BirthdayForm/BirthdayForm";
+import { useState, useEffect } from "react";
 
 export default function MyBirthdays() {
-  const birthdays = useSelector(my_birthdays);
+  const [birthdays, setBirthdays] = useState([]);
+
+  useEffect(() => {
+    const fetchBirthday = async () => {
+      const results = await fetch(
+        "https://api.passion-musique.net/index.php"
+      ).then((response) => response.json());
+      setBirthdays(results);
+    };
+    fetchBirthday();
+  }, []);
 
   return (
     <>
@@ -16,7 +25,7 @@ export default function MyBirthdays() {
         <li>Sexe</li>
       </ul>
       {birthdays.map((item, i) => {
-        return <BirthdaysLine object={item} key={`birthday-${i}`} index={i} />;
+        return <BirthdaysLine object={item} key={`birthday-${i}`} />;
       })}
     </>
   );

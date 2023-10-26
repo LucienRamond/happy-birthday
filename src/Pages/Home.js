@@ -1,17 +1,22 @@
 import Birthday from "../Components/Birthday/Birthday";
-import { useSelector } from "react-redux";
-import { my_birthdays } from "../redux/reducer/Birthdays";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  const birthdays = useSelector(my_birthdays);
-  const sortedBirthdays = [...birthdays];
-  sortedBirthdays.sort((a, b) => {
-    return a.countDown - b.countDown;
-  });
+  const [birthdays, setBirthdays] = useState([]);
+
+  useEffect(() => {
+    const fetchBirthday = async () => {
+      const results = await fetch(
+        "https://api.passion-musique.net/index.php"
+      ).then((response) => response.json());
+      setBirthdays(results);
+    };
+    fetchBirthday();
+  }, []);
 
   return (
     <>
-      {sortedBirthdays.map((item, i) => {
+      {birthdays.map((item, i) => {
         return <Birthday object={item} key={`birthday-${i}`} />;
       })}
     </>

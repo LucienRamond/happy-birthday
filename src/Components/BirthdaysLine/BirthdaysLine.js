@@ -1,29 +1,44 @@
 import "./BirthdaysLine.css";
 import moment from "moment";
 import "moment/locale/fr";
-import { useDispatch } from "react-redux";
-import { birthdayDelete, birthdayModify } from "../../redux/reducer/Birthdays";
 import { useState } from "react";
 
 export default function BirthdaysLine(props) {
-  const dispatch = useDispatch();
   const data = props.object;
   const [onModify, setOnModify] = useState(false);
   const [newLine, setNewLine] = useState({
     name: data.name,
     relationship: data.relationship,
-    birth: data.birth,
+    date: data.date,
     sex: data.sex,
-    key: data.key,
-    countDown: data.countDown,
+    avatar: data.avatar,
+    id: data.id,
   });
-  const deleteLine = () => {
-    dispatch(birthdayDelete(props.index));
+
+  const deleteLine = (e) => {
+    e.preventDefault();
+    fetch("https://api.passion-musique.net/birthday_delete.php", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data.id),
+    });
   };
+
   const modifyLine = () => {
     setOnModify(!onModify);
-    onModify && dispatch(birthdayModify({ line: newLine, index: props.index }));
+    if (onModify) {
+      fetch("https://api.passion-musique.net/birthday_update.php", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newLine),
+      });
+    }
   };
+
   return (
     <>
       <ul
@@ -77,13 +92,11 @@ export default function BirthdaysLine(props) {
               required
               type="date"
               id="birthday"
-              defaultValue={data.birth}
-              onChange={(e) =>
-                setNewLine({ ...newLine, birth: e.target.value })
-              }
+              defaultValue={data.date}
+              onChange={(e) => setNewLine({ ...newLine, date: e.target.value })}
             />
           ) : (
-            `${moment(data.birth).format("DD MMMM  YYYY")}`
+            `${moment(data.date).format("DD MMMM  YYYY")}`
           )}
         </li>
         <li>
@@ -102,7 +115,7 @@ export default function BirthdaysLine(props) {
         <li className="line-modify" onClick={modifyLine}>
           {onModify ? "✔" : "✎"}
         </li>
-        <li className="line-delete" onClick={deleteLine}>
+        <li className="line-delete" onClick={(e) => deleteLine(e)}>
           ⛌ <div className="erasure"></div>
         </li>
       </ul>
