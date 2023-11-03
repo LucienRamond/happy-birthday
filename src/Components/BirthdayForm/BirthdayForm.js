@@ -83,7 +83,7 @@ export default function BasicAccordion() {
         <AccordionDetails className="b-form">
           <div>
             <div className="b-avatar">
-              <img src={user.avatarUrl} />
+              <img src={user.avatarUrl} alt="avatar" />
             </div>
             <Button
               variant="contained"

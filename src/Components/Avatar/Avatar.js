@@ -126,7 +126,7 @@ export default function Avatar(props) {
       <div className="avatar-container">
         <h3 className="avatar-title">Personnalisez votre avatar :</h3>
         <div className="arrows">
-          {creatingAvatarIndex == 1 && (
+          {creatingAvatarIndex === 1 && (
             <div
               className="arrow"
               onClick={() =>
@@ -136,7 +136,7 @@ export default function Avatar(props) {
               ˂
             </div>
           )}
-          {creatingAvatarIndex == 0 && (
+          {creatingAvatarIndex === 0 && (
             <div
               className="arrow"
               onClick={() => hairsIndex > 0 && setHairsIndex(hairsIndex - 1)}
@@ -145,7 +145,7 @@ export default function Avatar(props) {
             </div>
           )}
 
-          {creatingAvatarIndex == 5 && (
+          {creatingAvatarIndex === 5 && (
             <div
               className="arrow"
               onClick={() =>
@@ -155,7 +155,7 @@ export default function Avatar(props) {
               ˂
             </div>
           )}
-          {creatingAvatarIndex == 2 && (
+          {creatingAvatarIndex === 2 && (
             <div
               className="arrow"
               onClick={() => eyeIndex > 0 && setEyeIndex(eyeIndex - 1)}
@@ -164,7 +164,7 @@ export default function Avatar(props) {
             </div>
           )}
 
-          {creatingAvatarIndex == 4 && (
+          {creatingAvatarIndex === 4 && (
             <div
               className="arrow"
               onClick={() =>
@@ -174,7 +174,7 @@ export default function Avatar(props) {
               ˂
             </div>
           )}
-          {creatingAvatarIndex == 3 && (
+          {creatingAvatarIndex === 3 && (
             <div
               className="arrow"
               onClick={() =>
@@ -190,7 +190,7 @@ export default function Avatar(props) {
           <img src={avatarUrl} alt="" />
         </div>
         <div className="arrows">
-          {creatingAvatarIndex == 0 && (
+          {creatingAvatarIndex === 0 && (
             <div
               className="arrow"
               onClick={() =>
@@ -201,7 +201,7 @@ export default function Avatar(props) {
               ˃
             </div>
           )}
-          {creatingAvatarIndex == 1 && (
+          {creatingAvatarIndex === 1 && (
             <div
               className="arrow"
               onClick={() =>
@@ -212,7 +212,7 @@ export default function Avatar(props) {
               ˃
             </div>
           )}
-          {creatingAvatarIndex == 2 && (
+          {creatingAvatarIndex === 2 && (
             <div
               className="arrow"
               onClick={() =>
@@ -222,7 +222,7 @@ export default function Avatar(props) {
               ˃
             </div>
           )}
-          {creatingAvatarIndex == 5 && (
+          {creatingAvatarIndex === 5 && (
             <div
               className="arrow"
               onClick={() =>
@@ -233,7 +233,7 @@ export default function Avatar(props) {
               ˃
             </div>
           )}
-          {creatingAvatarIndex == 3 && (
+          {creatingAvatarIndex === 3 && (
             <div
               className="arrow"
               onClick={() =>
@@ -244,7 +244,7 @@ export default function Avatar(props) {
               ˃
             </div>
           )}
-          {creatingAvatarIndex == 4 && (
+          {creatingAvatarIndex === 4 && (
             <div
               className="arrow"
               onClick={() =>
