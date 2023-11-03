@@ -1,54 +1,20 @@
-.line-container {
-  width: 60%;
-  margin-top: 0.5rem;
-  margin-inline: auto;
-
+.list-avatar {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 50px repeat(2, 21.5px);
-  gap: 0.2rem;
-  justify-items: space-around;
 }
-.line-delete {
-  position: relative;
-  display: block;
-  background-color: red;
-  text-align: center;
-  border-radius: 2px;
-  cursor: pointer;
-  box-shadow: 0.5px 0.5px 0.5px black;
-  transition: width 1s ease-in-out;
+.list-avatar div:first-child {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
 }
-.line-delete:hover {
-  box-shadow: 1px 1px 1px black;
-  color: white;
+.modify-avatar {
+  opacity: 25%;
 }
-.erasure {
-  height: 2px;
-  width: 0px;
-  top: 9px;
-  left: -845px;
-  background-color: rgb(255, 0, 0);
-  position: absolute;
-  transition: all 0.5s ease-in-out;
+.list-avatar button {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  color: #03a9f4;
+  width: 75%;
+  justify-self: center;
 }
-.line-delete:hover .erasure {
-  width: 800px;
-}
-
-.line-modify {
-  display: block;
-  background-color: rgb(45, 129, 247);
-  text-align: center;
-  border-radius: 2px;
-  cursor: pointer;
-  box-shadow: 0.5px 0.5px 0.5px black;
-}
-.line-modify:hover {
-  box-shadow: 1px 1px 1px black;
-  color: white;
-}
-.line-on-modification {
-  background-color: rgba(200, 200, 200, 0.4);
-  border: 1px dashed black;
-  border-radius: 3px;
+.list-avatar button svg {
+  font-size: 2rem;
 }

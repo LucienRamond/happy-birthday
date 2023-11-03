@@ -1,6 +1,6 @@
-import BirthdaysLine from "../Components/BirthdaysLine/BirthdaysLine";
 import BirthdayForm from "../Components/BirthdayForm/BirthdayForm";
 import { useState, useEffect } from "react";
+import BirthdayTable from "../Components/BirthdayTable/BirthdayTable";
 
 export default function MyBirthdays() {
   const [birthdays, setBirthdays] = useState([]);
@@ -18,15 +18,7 @@ export default function MyBirthdays() {
   return (
     <>
       <BirthdayForm />
-      <ul className="line-container">
-        <li>Nom</li>
-        <li>Relation</li>
-        <li>Date de naissance</li>
-        <li>Sexe</li>
-      </ul>
-      {birthdays.map((item, i) => {
-        return <BirthdaysLine object={item} key={`birthday-${i}`} />;
-      })}
+      <BirthdayTable />
     </>
   );
 }

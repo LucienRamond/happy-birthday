@@ -7,9 +7,10 @@ export const NewBirthdaySlice = createSlice({
       name: "",
       relationship: "",
       birth: "",
-      sex: "",
+      sex: "M",
       countDown: "",
-      avatarUrl: "",
+      avatarUrl:
+        "https://api.dicebear.com/7.x/big-smile/svg?hair=shortHair&mouth=openedSmile&eyes=cheery&hairColor=220f00&accessories=&accessoriesProbability=0&skinColor=ffe4c0",
     },
   },
 
