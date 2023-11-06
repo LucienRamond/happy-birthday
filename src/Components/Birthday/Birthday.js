@@ -1,9 +1,15 @@
 import "./Birthday.css";
 import moment from "moment";
 import "moment/locale/fr";
+import { useState } from "react";
 
 export default function Birthday(props) {
   const data = props.object;
+  const [accordion, setAccordion] = useState(false);
+
+  const toggleAccordion = () => {
+    setAccordion(!accordion);
+  };
 
   const setAge = () => {
     const actualDate = moment(Date.now()).format("MM DD");
@@ -39,23 +45,55 @@ export default function Birthday(props) {
     }
   };
 
+  const accordionClass = () => {
+    if (accordion && data.sex === "M") {
+      return "accordion-details accordion-details-translate";
+    } else if (accordion && data.sex === "F") {
+      return "accordion-details accordion-details-translate female-accordion";
+    } else if (!accordion && data.sex === "F") {
+      return "accordion-details female-accordion";
+    } else if (!accordion && data.sex === "M") {
+      return "accordion-details";
+    }
+  };
+
+  const containerMargin = () => {
+    if (accordion && data.sex === "M") {
+      return "b-container b-container-margin";
+    } else if (accordion && data.sex === "F") {
+      return "b-container female b-container-margin";
+    } else if (!accordion && data.sex === "F") {
+      return "b-container female";
+    } else if (!accordion && data.sex === "M") {
+      return "b-container";
+    }
+  };
+
   return (
-    <div className={data.sex === "M" ? "b-container" : "b-container female"}>
-      <div className="birthday-avatar">
-        <img src={data.avatar} alt="" />
+    <>
+      <div className={containerMargin()} onClick={toggleAccordion}>
+        <div className="birthday-avatar">
+          <img src={data.avatar} alt="" />
+        </div>
+        <div className="b-name">
+          <h2>{data.name}</h2>
+          <p>({data.relationship})</p>
+        </div>
+        <div className="b-date">{moment(data.date).format("DD MMMM YYYY")}</div>
+        <div className="age">{setAge()} ans</div>
+        {data.countDown !== 0 && (
+          <div className="b-count-down">{countDown()} jours restants</div>
+        )}
+        {data.countDown === 0 && (
+          <div className="b-count-down">🎉 Jour d'anniversaire ! 🎉</div>
+        )}
       </div>
-      <div className="b-name">
-        <h2>{data.name}</h2>
-        <p>({data.relationship})</p>
+      <div className={accordionClass()}>
+        <div className="b-date-accordion">
+          {moment(data.date).format("DD MMMM YYYY")}
+        </div>
+        <div>{setAge()} ans</div>
       </div>
-      <div className="b-date">{moment(data.date).format("DD MMMM YYYY")}</div>
-      <div className="b-date">{setAge()} ans</div>
-      {data.countDown !== 0 && (
-        <div className="b-count-down">{countDown()} jours restants</div>
-      )}
-      {data.countDown === 0 && (
-        <div className="b-count-down">🎉 Jour d'anniversaire ! 🎉</div>
-      )}
-    </div>
+    </>
   );
 }

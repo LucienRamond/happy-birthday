@@ -3,18 +3,24 @@
   padding: 1rem;
   width: 70%;
   margin-inline: auto;
-  margin-block: 4rem;
   text-align: center;
   border: 5px solid black;
   border-radius: 14px;
   background-color: rgb(38, 146, 255);
   box-shadow: 2px 2px 5px black;
+  height: auto;
+  z-index: 100;
 
   color: rgb(240, 240, 240);
 
   display: grid;
   gap: 0.5rem;
+  transition: box-shadow 0.2s ease-in-out;
 }
+.b-container:first-of-type {
+  margin-top: 3rem;
+}
+
 .birthday-avatar {
   position: absolute;
   top: -25px;
@@ -28,11 +34,8 @@
 }
 .b-container:hover {
   box-shadow: 5px 5px 10px black;
-  color: rgb(255, 255, 255);
 }
-.female {
-  background-color: rgb(255, 38, 244);
-}
+
 .b-name {
   display: flex;
   font-size: 2rem;
@@ -43,6 +46,76 @@
 .b-date {
   font-size: 1.5rem;
 }
+.age {
+  font-size: 1.5rem;
+}
 .b-count-down {
   font-size: 4rem;
+}
+.accordion-details {
+  width: 55%;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  border-end-end-radius: 10px;
+  border-end-start-radius: 10px;
+  margin-inline: auto;
+  transform: translate(50px, -9rem);
+  background-color: rgba(38, 146, 255, 0.6);
+  transition: all 0.7s ease-in-out;
+  z-index: 0;
+}
+.female {
+  background-color: rgb(255, 38, 244);
+}
+.female-accordion {
+  background-color: rgb(255, 38, 244, 0.6);
+}
+
+@media (max-width: 1215px) {
+  .b-container {
+    border: 5px solid black;
+    border-radius: 14px;
+    width: 60%;
+    margin-right: 15%;
+    cursor: pointer;
+    margin-top: -1rem;
+    margin-bottom: 0;
+    transition: margin-bottom 0.7s ease-in-out;
+  }
+  .b-container-margin {
+    margin-bottom: 4rem;
+  }
+  .b-container:first-of-type {
+    margin-top: 3rem;
+  }
+  .birthday-avatar {
+    top: -25px;
+    left: -150px;
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+  }
+  .b-count-down {
+    font-size: 3rem;
+  }
+  .b-date {
+    display: none;
+    font-style: italic;
+  }
+  .age {
+    display: none;
+  }
+  .b-date-accordion {
+    font-style: italic;
+    font-size: 1.5rem;
+  }
+  .accordion-details-translate {
+    transform: translate(50px, -4rem);
+  }
 }

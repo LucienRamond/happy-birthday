@@ -80,7 +80,7 @@ export default function BasicAccordion() {
             Ajouter un anniversaire
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className="b-form">
+        <AccordionDetails className="b-form" sx={{ transition: "all 1s ease" }}>
           <div>
             <div className="b-avatar">
               <img src={user.avatarUrl} alt="avatar" />
