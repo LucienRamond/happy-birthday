@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { BASE_URL_API } from "@/lib/constants";
 import { useRef } from "react";
 import { User, useUser } from "@/providers/UserProvider";
+import { Button } from "@/Components/ui/button";
+import { Label } from "@radix-ui/react-label";
+import { Input } from "@/Components/ui/input";
 
 export default function Login() {
   const formRef = useRef<
