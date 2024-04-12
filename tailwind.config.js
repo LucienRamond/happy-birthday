@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from "tailwindcss-animate";
 export const darkMode = ["class"];
 export const content = [
   "./pages/**/*.{ts,tsx}",
@@ -72,5 +73,4 @@ export const theme = {
     },
   },
 };
-// eslint-disable-next-line no-undef
-export const plugins = [require("tailwindcss-animate")];
+export const plugins = [plugin];
